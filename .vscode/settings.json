@@ -1,0 +1,29 @@
+{
+    "editor.rulers": [
+        79,
+        120
+    ],
+    "files.trimFinalNewlines": true,
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true,
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.codeActionsOnSave": {
+        "source.fixAll": "always"
+    },
+    "[toml]": {
+        "editor.defaultFormatter": "tamasfe.even-better-toml"
+    },
+    "cSpell.words": [
+        "isort",
+        "mypy",
+        "numpy",
+        "pydocstyle",
+        "roguelike",
+        "subclassing",
+        "tcod",
+        "tileset",
+        "tilesheet"
+    ],
+    "python-envs.defaultEnvManager": "ms-python.python:system"
+}

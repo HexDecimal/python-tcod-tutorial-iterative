@@ -1,0 +1,52 @@
+[project]
+name = "roguelike-tutorial"
+dynamic = ["version"]
+requires-python = ">=3.14"
+dependencies = [
+    "attrs>=26.1.0",
+    "numpy>=2.4.6",
+    "tcod>=21.2.0",
+    "tcod-ecs>=5.5.0",
+]
+
+[tool.uv]
+exclude-newer = "7 days" # https://docs.astral.sh/uv/concepts/resolution/#dependency-cooldowns
+
+[tool.mypy] # https://mypy.readthedocs.io/en/stable/config_file.html
+files = ["."]
+python_version = "3.14"
+warn_unused_configs = true
+show_error_codes = true
+disallow_subclassing_any = true
+disallow_any_generics = true
+disallow_untyped_calls = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_return_any = true
+implicit_reexport = false
+strict_equality = true
+strict_bytes = true
+extra_checks = true
+
+[tool.ruff] # https://docs.astral.sh/ruff/configuration/
+line-length = 120
+
+[tool.ruff.lint] # https://docs.astral.sh/ruff/rules/
+select = ["ALL"]
+ignore = [
+    "COM",  # flake8-commas
+    "E501", # line-too-long
+    "S101", # assert
+    "S311", # suspicious-non-cryptographic-random-usage
+]
+
+[tool.ruff.lint.pydocstyle] # https://docs.astral.sh/ruff/settings/#lintpydocstyle
+convention = "google"
+
+[tool.ruff.lint.isort]
+required-imports = ["from __future__ import annotations"]
