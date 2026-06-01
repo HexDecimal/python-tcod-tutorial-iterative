@@ -14,11 +14,10 @@ tileset = tcod.tileset.load_tilesheet("assets/terminal8x12_gs_ro.png", 16, 16, t
 def main() -> None:
     """Main entry point."""
     console = tcod.console.Console(90, 40)
+    console.print(x=0, y=0, text="Hello World")
 
     with tcod.context.new(console=console, tileset=tileset) as context:
         while True:
-            console.clear()
-            console.print(x=0, y=0, text="Hello World")
             context.present(console)
             for event in tcod.event.wait():
                 if isinstance(event, tcod.event.Quit):
