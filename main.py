@@ -8,6 +8,8 @@ import tcod.context
 import tcod.event
 import tcod.tileset
 
+TITLE = "Yet Another Roguelike Tutorial"
+
 tileset = tcod.tileset.load_tilesheet("assets/terminal8x12_gs_ro.png", 16, 16, tcod.tileset.CHARMAP_CP437)
 
 
@@ -16,7 +18,7 @@ def main() -> None:
     console = tcod.console.Console(90, 40)
     console.print(x=0, y=0, text="Hello World")
 
-    with tcod.context.new(console=console, tileset=tileset) as context:
+    with tcod.context.new(console=console, tileset=tileset, title=TITLE) as context:
         while True:
             context.present(console)
             for event in tcod.event.wait():
