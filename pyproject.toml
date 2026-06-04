@@ -41,10 +41,12 @@ line-length = 120
 [tool.ruff.lint] # https://docs.astral.sh/ruff/rules/
 select = ["ALL"]
 ignore = [
-    "COM",  # flake8-commas
-    "E501", # line-too-long
-    "S101", # assert
-    "S311", # suspicious-non-cryptographic-random-usage
+    "COM",   # flake8-commas
+    "E501",  # line-too-long
+    "S101",  # assert
+    "S311",  # suspicious-non-cryptographic-random-usage
+    "TC002", # typing-only-third-party-import
+    "TC003", # typing-only-standard-library-import
 ]
 
 [tool.ruff.lint.pydocstyle] # https://docs.astral.sh/ruff/settings/#lintpydocstyle
