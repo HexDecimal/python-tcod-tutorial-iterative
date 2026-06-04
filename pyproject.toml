@@ -10,8 +10,8 @@ dependencies = [
     "tcod-ecs>=5.5.0",
 ]
 
-[tool.uv]
-exclude-newer = "7 days" # https://docs.astral.sh/uv/concepts/resolution/#dependency-cooldowns
+[tool.uv] # https://docs.astral.sh/uv/concepts/resolution/#dependency-cooldowns
+exclude-newer = "7 days"
 
 [tool.mypy] # https://mypy.readthedocs.io/en/stable/config_file.html
 files = ["."]
