@@ -22,7 +22,7 @@ class Move:
         height, width = new_pos.z.components[MapShape]
         if not (0 <= new_pos.x < width and 0 <= new_pos.y < height):
             return False  # Out-of-bounds
-        if tiles.TILES["move_cost"][new_pos.z.components[Tiles][new_pos.y, new_pos.x]]:
+        if tiles.TILE_DATA["move_cost"][new_pos.z.components[Tiles][new_pos.y, new_pos.x]]:
             return False  # Blocked by wall
         if actor.registry.Q.all_of(tags=[new_pos]):
             return False

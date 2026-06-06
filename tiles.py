@@ -8,6 +8,7 @@ import numpy as np
 
 TILE_DTYPE = np.dtype(
     [
+        ("name", np.object_),
         ("ch", np.intc),
         ("fg", "3B"),
         ("bg", "3B"),
@@ -21,6 +22,7 @@ TILE_DTYPE = np.dtype(
 class NewTile(NamedTuple):
     """Helper class for new tiles."""
 
+    name: str
     ch: int
     fg: tuple[int, int, int] = (255, 255, 255)
     bg: tuple[int, int, int] = (0, 0, 0)
@@ -28,10 +30,10 @@ class NewTile(NamedTuple):
     transparent: bool = False
 
 
-TILES = np.array(
+TILE_DATA = np.array(
     [
-        NewTile(ch=(ord(" ")), bg=(0x80, 0x80, 0x80), move_cost=1, transparent=True),
-        NewTile(ch=(ord(".")), fg=(0x40, 0x40, 0x40), bg=(0, 0, 0)),
+        NewTile(name="wall", ch=(ord(" ")), bg=(0x80, 0x80, 0x80), move_cost=1, transparent=True),
+        NewTile(name="floor", ch=(ord(".")), fg=(0x40, 0x40, 0x40), bg=(0, 0, 0)),
     ],
     dtype=TILE_DTYPE,
 )
