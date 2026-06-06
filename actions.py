@@ -5,7 +5,8 @@ from __future__ import annotations
 import attrs
 from tcod.ecs import Entity
 
-from components import Position
+import tiles
+from components import MapShape, Position, Tiles
 
 
 @attrs.define
@@ -18,6 +19,11 @@ class Move:
     def __call__(self, actor: Entity) -> bool:
         """Verify and perform the movement on `actor`."""
         new_pos = actor.components[Position] + (self.dx, self.dy)
+        height, width = new_pos.z.components[MapShape]
+        if not (0 <= new_pos.x < width and 0 <= new_pos.y < height):
+            return False  # Out-of-bounds
+        if tiles.TILES["move_cost"][new_pos.z.components[Tiles][new_pos.y, new_pos.x]]:
+            return False  # Blocked by wall
         if actor.registry.Q.all_of(tags=[new_pos]):
             return False
         actor.components[Position] = new_pos

@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple, Self
+from typing import Final, NamedTuple, Self
 
 import attrs
+import numpy as np
 import tcod.ecs.callbacks
+from numpy.typing import NDArray
 from tcod.ecs import Entity
 
 
@@ -38,3 +40,17 @@ def on_position_changed(entity: Entity, old: Position | None, new: Position | No
         entity.tags.remove(old)
     if new is not None:
         entity.tags.add(new)
+        entity.relation_tag["IsIn"] = new.z
+    else:
+        del entity.relation_tag["IsIn"]
+
+
+class MapShape(NamedTuple):
+    """Map shape tuple."""
+
+    height: int
+    width: int
+
+
+Tiles: Final = ("Tiles", NDArray[np.uint8])
+"""Map tiles layer."""

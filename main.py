@@ -10,6 +10,8 @@ import tcod.tileset
 from tcod.ecs import Registry
 
 import actions
+import map_init
+import rendering
 from components import Graphic, Position
 
 TITLE = "Yet Another Roguelike Tutorial"
@@ -22,23 +24,15 @@ def main() -> None:
     console = tcod.console.Console(90, 40)
 
     world = Registry()
-    level_0 = world["level_0"]
+    level_0 = map_init.new_map(world, width=100, height=50)
     player = world["player"]
     player.components[Position] = Position(console.width // 2, console.height // 2, level_0)
     player.components[Graphic] = Graphic(ord("@"), (255, 255, 255))
 
-    for i in range(-5, 5):
-        wall = world[object()]
-        wall.components[Position] = player.components[Position] + (-5, i)
-        wall.components[Graphic] = Graphic(ord("#"), (255, 255, 255))
-
     with tcod.context.new(console=console, tileset=tileset, title=TITLE) as context:
         while True:
             console.clear()
-            for entity in world.Q.all_of(components=[Position, Graphic]):
-                pos = entity.components[Position]
-                ch, fg = entity.components[Graphic]
-                console.print(x=pos.x, y=pos.y, text=chr(ch), fg=fg)
+            rendering.render_map(console, player.components[Position])
 
             context.present(console)
             for event in tcod.event.wait():
