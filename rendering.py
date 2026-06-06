@@ -21,7 +21,7 @@ def render_map(console: tcod.console.Console, camera: Position) -> None:
     world_tiles = camera.z.components[Tiles][world_slice]
     console.rgb[screen_slice] = tiles.TILE_DATA[["ch", "fg", "bg"]][world_tiles]
 
-    for entity in world.Q.all_of(components=[Position, Graphic]):
+    for entity in world.Q.all_of(components=[Position, Graphic], relations=[("IsIn", camera.z)]):
         pos = entity.components[Position]
         ch, fg = entity.components[Graphic]
         x = pos.x - pivot_x
