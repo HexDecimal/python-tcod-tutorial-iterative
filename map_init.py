@@ -144,6 +144,7 @@ def generate_dungeon(registry: Registry, width: int, height: int) -> Entity:
     up_stairs = registry[object()]
     up_stairs.components[Position] = Position(rooms[0].center_x, rooms[0].center_y, new_map)
     up_stairs.components[Graphic] = Graphic(ord("<"), (255, 255, 255))
+    up_stairs.tags.add("StartPoint")
 
     down_stairs = registry[object()]
     down_stairs.components[Position] = Position(rooms[-1].center_x, rooms[-1].center_y, new_map)

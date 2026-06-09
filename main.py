@@ -24,9 +24,10 @@ def main() -> None:
     console = tcod.console.Console(90, 40)
 
     world = Registry()
-    level_0 = map_init.generate_dungeon(world, width=console.width, height=console.height)
+    level_0 = map_init.generate_dungeon(world, width=100, height=50)
     player = world["player"]
-    player.components[Position] = Position(console.width // 2, console.height // 2, level_0)
+    (start,) = world.Q.all_of(tags=["StartPoint"], relations=[("IsIn", level_0)])
+    player.components[Position] = start.components[Position]
     player.components[Graphic] = Graphic(ord("@"), (255, 255, 255))
 
     with tcod.context.new(console=console, tileset=tileset, title=TITLE) as context:
