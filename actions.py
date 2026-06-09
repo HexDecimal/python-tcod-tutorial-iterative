@@ -24,7 +24,7 @@ class Move:
             return False  # Out-of-bounds
         if tiles.TILE_DATA["move_cost"][new_pos.z.components[Tiles][new_pos.y, new_pos.x]]:
             return False  # Blocked by wall
-        if actor.registry.Q.all_of(tags=[new_pos]):
+        if actor.registry.Q.all_of(tags=[new_pos, "Blocking"]):
             return False
         actor.components[Position] = new_pos
         return True

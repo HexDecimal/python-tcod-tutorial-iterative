@@ -17,6 +17,7 @@
         "editor.defaultFormatter": "tamasfe.even-better-toml"
     },
     "cSpell.words": [
+        "bresenham",
         "isort",
         "mypy",
         "numpy",
