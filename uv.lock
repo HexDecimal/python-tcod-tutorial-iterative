@@ -233,6 +233,7 @@ dependencies = [
     { name = "mypy" },
     { name = "numpy" },
     { name = "tcod" },
+    { name = "tcod-camera" },
     { name = "tcod-ecs" },
 ]
 
@@ -242,6 +243,7 @@ requires-dist = [
     { name = "mypy", specifier = ">=2.1.0" },
     { name = "numpy", specifier = ">=2.4.6" },
     { name = "tcod", specifier = ">=21.2.0" },
+    { name = "tcod-camera", specifier = ">=1.0.1" },
     { name = "tcod-ecs", specifier = ">=5.5.0" },
 ]
 
@@ -269,6 +271,15 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/54/a3/b1b0a71635c7fbae497aa8c9f782e6b4eb7a98ca06330fe5dac63d6aae05/tcod-21.2.0-cp314-cp314t-win32.whl", hash = "sha256:51fd3b14f731363473ca64c54d59377c50ff10f394a5d2051568e20ac571a190", size = 1651788, upload-time = "2026-04-04T20:21:49.884Z" },
     { url = "https://files.pythonhosted.org/packages/a7/39/1568f750d2fb606f591fb0067b69d686788a3574945976db53d8268327b1/tcod-21.2.0-cp314-cp314t-win_amd64.whl", hash = "sha256:897a3ba7d476772b392a15702a1c9dc30e62a6ec68958601acede12f7e8cf4e1", size = 1956905, upload-time = "2026-04-04T20:21:51.935Z" },
     { url = "https://files.pythonhosted.org/packages/d7/8d/38835ff4cfaeeb547fc086daae76bac5de9c585498f45508d15f3870bbe5/tcod-21.2.0-cp314-cp314t-win_arm64.whl", hash = "sha256:a15f99ffaf8e4e8e9adc6c95cc98e321d5cdfeee2c93a92aeef21171b4465c30", size = 1718981, upload-time = "2026-04-04T20:21:53.766Z" },
+]
+
+[[package]]
+name = "tcod-camera"
+version = "1.0.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/8c/4f/bbf57f16b2d3a36631d6cc2e761e342ea6b7080aab46e723a8bc6275006e/tcod_camera-1.0.1.tar.gz", hash = "sha256:3909c77a9e8f9ab8ad283c4778306669b721d9e06f59cb865feabffa50c52be9", size = 9082, upload-time = "2024-07-12T16:39:14.465Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/12/2e/e8e3bfd7e352bf134c5e84d670cfeda22e9ae2cb77b6c61953e605d28ce3/tcod_camera-1.0.1-py3-none-any.whl", hash = "sha256:7135a2b99a589bfb848a6de8421522e912a7feebb328d19dbd1612df13dff623", size = 8198, upload-time = "2024-07-12T16:39:13.446Z" },
 ]
 
 [[package]]

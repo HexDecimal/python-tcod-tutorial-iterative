@@ -1,4 +1,0 @@
-attrs >= 26.1.0
-numpy >= 2.4.6
-tcod >= 21.2.0
-tcod-ecs >= 5.5.0
