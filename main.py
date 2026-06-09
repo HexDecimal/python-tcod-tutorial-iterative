@@ -24,7 +24,7 @@ def main() -> None:
     console = tcod.console.Console(90, 40)
 
     world = Registry()
-    level_0 = map_init.new_map(world, width=100, height=50)
+    level_0 = map_init.generate_dungeon(world, width=console.width, height=console.height)
     player = world["player"]
     player.components[Position] = Position(console.width // 2, console.height // 2, level_0)
     player.components[Graphic] = Graphic(ord("@"), (255, 255, 255))
