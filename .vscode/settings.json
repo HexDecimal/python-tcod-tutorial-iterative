@@ -17,6 +17,7 @@
         "editor.defaultFormatter": "tamasfe.even-better-toml"
     },
     "cSpell.words": [
+        "bresenham",
         "isort",
         "mypy",
         "numpy",
@@ -27,5 +28,5 @@
         "tileset",
         "tilesheet"
     ],
-    "python-envs.defaultEnvManager": "ms-python.python:system"
+    "python-envs.defaultEnvManager": "ms-python.python:venv"
 }

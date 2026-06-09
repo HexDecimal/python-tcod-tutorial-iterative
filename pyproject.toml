@@ -4,17 +4,20 @@ dynamic = ["version"]
 requires-python = ">=3.14"
 dependencies = [
     "attrs>=26.1.0",
+    "mypy>=2.1.0",
     "numpy>=2.4.6",
     "tcod>=21.2.0",
+    "tcod-camera>=1.0.1",
     "tcod-ecs>=5.5.0",
 ]
 
-[tool.uv]
-exclude-newer = "7 days" # https://docs.astral.sh/uv/concepts/resolution/#dependency-cooldowns
+[tool.uv] # https://docs.astral.sh/uv/concepts/resolution/#dependency-cooldowns
+exclude-newer = "7 days"
 
 [tool.mypy] # https://mypy.readthedocs.io/en/stable/config_file.html
 files = ["."]
 python_version = "3.14"
+enable_incomplete_feature = ["TypeForm"]
 warn_unused_configs = true
 show_error_codes = true
 disallow_subclassing_any = true
@@ -39,10 +42,12 @@ line-length = 120
 [tool.ruff.lint] # https://docs.astral.sh/ruff/rules/
 select = ["ALL"]
 ignore = [
-    "COM",  # flake8-commas
-    "E501", # line-too-long
-    "S101", # assert
-    "S311", # suspicious-non-cryptographic-random-usage
+    "COM",   # flake8-commas
+    "E501",  # line-too-long
+    "S101",  # assert
+    "S311",  # suspicious-non-cryptographic-random-usage
+    "TC002", # typing-only-third-party-import
+    "TC003", # typing-only-standard-library-import
 ]
 
 [tool.ruff.lint.pydocstyle] # https://docs.astral.sh/ruff/settings/#lintpydocstyle
