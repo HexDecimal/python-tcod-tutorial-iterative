@@ -18,7 +18,7 @@ class Move:
     def __call__(self, actor: Entity) -> bool:
         """Verify and perform the movement on `actor`."""
         new_pos = actor.components[Position] + (self.dx, self.dy)
-        if actor.registry.Q.all_of(tags=[new_pos]):
+        if actor.registry.Q.all_of(tags=[new_pos, "Blocking"]):
             return False
         actor.components[Position] = new_pos
         return True

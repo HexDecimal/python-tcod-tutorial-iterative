@@ -31,6 +31,7 @@ def main() -> None:
         wall = world[object()]
         wall.components[Position] = player.components[Position] + (-5, i)
         wall.components[Graphic] = Graphic(ord("#"), (255, 255, 255))
+        wall.tags.add("Blocking")
 
     with tcod.context.new(console=console, tileset=tileset, title=TITLE) as context:
         while True:
