@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+from random import Random
+
 import tcod.console
 import tcod.context
 import tcod.event
@@ -24,6 +26,7 @@ def main() -> None:
     console = tcod.console.Console(90, 40)
 
     world = Registry()
+    world[None].components[Random] = Random()
     level_0 = map_init.generate_dungeon(world, width=100, height=50)
     player = world["player"]
     (start,) = world.Q.all_of(tags=["StartPoint"], relations=[("IsIn", level_0)])

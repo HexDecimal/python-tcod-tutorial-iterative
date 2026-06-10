@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-import random
+from random import Random
 
 import attrs
 import numpy as np
@@ -98,6 +98,7 @@ def connect_rooms(map_: Entity, room_1: Rect, room_2: Rect) -> None:
 
 def generate_dungeon(registry: Registry, width: int, height: int) -> Entity:
     """Generate and return a dungeon level."""
+    rng = registry[None].components[Random]
     new_map = registry[object()]
     new_map.components[MapShape] = MapShape(height=height, width=width)
     new_map.components[Tiles] = np.zeros(new_map.components[MapShape], dtype=np.uint8)
@@ -113,9 +114,9 @@ def generate_dungeon(registry: Registry, width: int, height: int) -> Entity:
 
     while len(rooms) < max_rooms and max_iterations > 0:
         max_iterations -= 1
-        new_width, new_height = (random.randint(6, 10), random.randint(6, 10))
+        new_width, new_height = (rng.randint(6, 10), rng.randint(6, 10))
 
-        for x, y in tcod.los.bresenham((0, 0), (random.randint(-50, 50), random.randint(-50, 50))).tolist():
+        for x, y in tcod.los.bresenham((0, 0), (rng.randint(-50, 50), rng.randint(-50, 50))).tolist():
             new_x = rooms[-1].center_x + x
             new_y = rooms[-1].center_y + y
 
@@ -133,7 +134,7 @@ def generate_dungeon(registry: Registry, width: int, height: int) -> Entity:
             rooms.append(new_room)
             break
 
-    for random_room in random.sample(rooms[:-1], 5):
+    for random_room in rng.sample(rooms[:-1], 5):
         connect_rooms(new_map, rooms[-1], random_room)
 
     new_map.components[Tiles][new_map.components[Tiles] == 0] = 2
