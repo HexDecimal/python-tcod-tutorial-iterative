@@ -136,6 +136,8 @@ def generate_dungeon(registry: Registry, width: int, height: int) -> Entity:
     for random_room in random.sample(rooms[:-1], 5):
         connect_rooms(new_map, rooms[-1], random_room)
 
+    new_map.components[Tiles][new_map.components[Tiles] == 0] = 2
+
     up_stairs = registry[object()]
     up_stairs.components[Position] = Position(rooms[0].center_x, rooms[0].center_y, new_map)
     up_stairs.components[Graphic] = Graphic(ord("<"), (255, 255, 255))
