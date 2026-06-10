@@ -52,10 +52,6 @@ class Rect:
         """Return the bottom end of this rect."""
         return self.y + self.height
 
-    def intersects(self, other: Rect) -> bool:
-        """Return True if this rect overlaps with another Rect."""
-        return self.x <= other.right and self.right >= other.x and self.y <= other.bottom and self.bottom >= other.y
-
     def within(self, other: Rect) -> bool:
         """Return True if `self` is within `other`."""
         return other.x <= self.x and other.y <= self.y and self.right <= other.right and self.bottom <= other.bottom
