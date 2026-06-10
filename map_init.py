@@ -58,9 +58,7 @@ class Rect:
 
     def distance(self, other: Rect) -> int:
         """Return the distance between `self` and `other`."""
-        return min(abs(other.x - self.x), abs(self.right - other.right)) + min(
-            abs(other.y - self.y), abs(self.bottom - other.bottom)
-        )
+        return abs(self.center_x - other.center_x) + abs(self.center_y - other.center_y)
 
 
 def new_map(registry: Registry, width: int, height: int) -> Entity:
