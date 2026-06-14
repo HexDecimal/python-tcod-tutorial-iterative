@@ -33,8 +33,8 @@ class NewTile(NamedTuple):
 TILE_DATA = np.array(
     [
         NewTile(name="void", ch=(ord(" ")), fg=(255, 255, 255), bg=(0, 0, 0), move_cost=0, transparent=True),
-        NewTile(name="floor", ch=(ord(".")), fg=(0x40, 0x40, 0x40), bg=(0, 0, 0), move_cost=1, transparent=False),
-        NewTile(name="wall", ch=(ord(" ")), bg=(0x80, 0x80, 0x80), move_cost=0, transparent=True),
+        NewTile(name="floor", ch=(ord(".")), fg=(0x40, 0x40, 0x40), bg=(0, 0, 0), move_cost=1, transparent=True),
+        NewTile(name="wall", ch=(ord(" ")), bg=(0x80, 0x80, 0x80), move_cost=0, transparent=False),
     ],
     dtype=TILE_DTYPE,
 )
