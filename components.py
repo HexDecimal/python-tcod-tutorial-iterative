@@ -54,3 +54,9 @@ class MapShape(NamedTuple):
 
 Tiles: Final = ("Tiles", NDArray[np.uint8])
 """Map tiles layer."""
+
+Visible: Final = ("Visible", NDArray[np.bool])
+"""Visible map tiles layer."""
+
+Memory: Final = ("Memory", NDArray[np.uint8])
+"""Memory of map tiles."""

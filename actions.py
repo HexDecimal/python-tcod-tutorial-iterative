@@ -5,6 +5,7 @@ from __future__ import annotations
 import attrs
 from tcod.ecs import Entity
 
+import map_logic
 import tiles
 from components import MapShape, Position, Tiles
 
@@ -27,4 +28,6 @@ class Move:
         if actor.registry.Q.all_of(tags=[new_pos, "Blocking"]):
             return False
         actor.components[Position] = new_pos
+        if "IsPlayer" in actor.tags:
+            map_logic.update_fov(actor)
         return True

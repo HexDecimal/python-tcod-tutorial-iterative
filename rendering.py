@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 
+import numpy as np
 import tcod.camera
 import tcod.console
 
 import tiles
-from components import Graphic, MapShape, Position, Tiles
+from components import Graphic, MapShape, Memory, Position, Tiles, Visible
 
 
 def render_map(console: tcod.console.Console, camera: Position) -> None:
@@ -21,8 +22,21 @@ def render_map(console: tcod.console.Console, camera: Position) -> None:
     world_tiles = camera.z.components[Tiles][world_slice]
     console.rgb[screen_slice] = tiles.TILE_DATA[["ch", "fg", "bg"]][world_tiles]
 
+    is_visible = camera.z.components[Visible]
+
+    visible_tiles = tiles.TILE_DATA[["ch", "fg", "bg"]][world_tiles]
+    memory_tiles = tiles.TILE_DATA[["ch", "fg", "bg"]][camera.z.components[Memory][world_slice]]
+    memory_tiles["fg"] //= 2
+    memory_tiles["bg"] //= 2
+
+    console.rgb[screen_slice] = np.select(
+        condlist=[is_visible[world_slice]], choicelist=[visible_tiles], default=memory_tiles
+    )
+
     for entity in world.Q.all_of(components=[Position, Graphic], relations=[("IsIn", camera.z)]):
         pos = entity.components[Position]
+        if not is_visible[pos.y, pos.x]:
+            continue
         ch, fg = entity.components[Graphic]
         x = pos.x - pivot_x
         y = pos.y - pivot_y

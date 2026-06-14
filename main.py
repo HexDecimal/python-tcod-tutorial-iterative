@@ -13,6 +13,7 @@ from tcod.ecs import Registry
 
 import actions
 import map_init
+import map_logic
 import rendering
 from components import Graphic, Position
 
@@ -32,6 +33,8 @@ def main() -> None:
     (start,) = world.Q.all_of(tags=["StartPoint"], relations=[("IsIn", level_0)])
     player.components[Position] = start.components[Position]
     player.components[Graphic] = Graphic(ord("@"), (255, 255, 255))
+    player.tags.add("IsPlayer")
+    map_logic.update_fov(player)
 
     with tcod.context.new(console=console, tileset=tileset, title=TITLE) as context:
         while True:
