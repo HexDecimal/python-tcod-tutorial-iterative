@@ -16,6 +16,7 @@
     "[toml]": {
         "editor.defaultFormatter": "tamasfe.even-better-toml"
     },
+    "mypy-type-checker.importStrategy": "fromEnvironment",
     "cSpell.words": [
         "bresenham",
         "isort",
