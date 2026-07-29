@@ -13,7 +13,7 @@ dependencies = [
 
 [tool.uv] # https://docs.astral.sh/uv/concepts/resolution/#dependency-cooldowns
 exclude-newer = "7 days"
-exclude-newer-package = { mypy = false }
+exclude-newer-package = { mypy = false, ruff = false }
 
 [tool.mypy] # https://mypy.readthedocs.io/en/stable/config_file.html
 files = ["."]
@@ -43,6 +43,7 @@ line-length = 120
 select = ["ALL"]
 ignore = [
     "COM",   # flake8-commas
+    "CPY",   # flake8-copyright
     "E501",  # line-too-long
     "S101",  # assert
     "S311",  # suspicious-non-cryptographic-random-usage
