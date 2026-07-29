@@ -12,6 +12,7 @@ exclude-newer-span = "P7D"
 
 [options.exclude-newer-package]
 mypy = false
+ruff = false
 
 [[package]]
 name = "ast-serialize"
