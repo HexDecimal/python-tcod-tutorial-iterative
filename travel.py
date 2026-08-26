@@ -15,7 +15,9 @@ def force_move(entity: Entity, dest: Position) -> None:
 def can_move_to(entity: Entity, dest: Position) -> bool:
     """Check and return the status of moving `entity` to `dest`."""
     world = entity.registry
-    return not world.Q.all_of(tags=[dest, "Blocking"])  # No blocking entities at dest
+    if world.Q.all_of(tags=[dest, "Blocking"]):  # noqa: SIM103
+        return False  # No blocking entities at dest
+    return True  # Valid move
 
 
 def move_by(entity: Entity, dx: int, dy: int) -> bool:
