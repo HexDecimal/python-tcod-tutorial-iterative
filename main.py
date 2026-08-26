@@ -9,9 +9,9 @@ import tcod.event
 import tcod.tileset
 from tcod.ecs import Registry
 
-import actions
 import map_init
 import rendering
+import travel
 from components import Graphic, Position
 
 TITLE = "Yet Another Roguelike Tutorial"
@@ -26,8 +26,12 @@ def main() -> None:
     world = Registry()
     level_0 = map_init.new_map(world, width=100, height=50)
     player = world["player"]
-    player.components[Position] = Position(console.width // 2, console.height // 2, level_0)
     player.components[Graphic] = Graphic(ord("@"), (255, 255, 255))
+    travel.force_move(player, Position(console.width // 2, console.height // 2, level_0))
+
+    wall_prefab = world["wall"]
+    wall_prefab.components[Graphic] = Graphic(ord("#"), (255, 255, 255))
+    wall_prefab.tags.add("Blocking")
 
     with tcod.context.new(console=console, tileset=tileset, title=TITLE) as context:
         while True:
@@ -40,13 +44,13 @@ def main() -> None:
                     case tcod.event.Quit():
                         raise SystemExit
                     case tcod.event.KeyDown(sym=tcod.event.KeySym.UP):
-                        actions.Move(dx=0, dy=-1)(player)
+                        travel.move_by(player, dx=0, dy=-1)
                     case tcod.event.KeyDown(sym=tcod.event.KeySym.DOWN):
-                        actions.Move(dx=0, dy=1)(player)
+                        travel.move_by(player, dx=0, dy=1)
                     case tcod.event.KeyDown(sym=tcod.event.KeySym.LEFT):
-                        actions.Move(dx=-1, dy=0)(player)
+                        travel.move_by(player, dx=-1, dy=0)
                     case tcod.event.KeyDown(sym=tcod.event.KeySym.RIGHT):
-                        actions.Move(dx=1, dy=0)(player)
+                        travel.move_by(player, dx=1, dy=0)
 
 
 if __name__ == "__main__":
