@@ -11,9 +11,9 @@ import tcod.event
 import tcod.tileset
 from tcod.ecs import Registry
 
-import actions
 import map_init
 import rendering
+import travel
 from components import Graphic, Position
 
 TITLE = "Yet Another Roguelike Tutorial"
@@ -30,8 +30,8 @@ def main() -> None:
     level_0 = map_init.generate_dungeon(world, width=100, height=50)
     player = world["player"]
     (start,) = world.Q.all_of(tags=["StartPoint"], relations=[("IsIn", level_0)])
-    player.components[Position] = start.components[Position]
     player.components[Graphic] = Graphic(ord("@"), (255, 255, 255))
+    travel.force_move(player, start.components[Position])
 
     with tcod.context.new(console=console, tileset=tileset, title=TITLE) as context:
         while True:
@@ -44,13 +44,13 @@ def main() -> None:
                     case tcod.event.Quit():
                         raise SystemExit
                     case tcod.event.KeyDown(sym=tcod.event.KeySym.UP):
-                        actions.Move(dx=0, dy=-1)(player)
+                        travel.move_by(player, dx=0, dy=-1)
                     case tcod.event.KeyDown(sym=tcod.event.KeySym.DOWN):
-                        actions.Move(dx=0, dy=1)(player)
+                        travel.move_by(player, dx=0, dy=1)
                     case tcod.event.KeyDown(sym=tcod.event.KeySym.LEFT):
-                        actions.Move(dx=-1, dy=0)(player)
+                        travel.move_by(player, dx=-1, dy=0)
                     case tcod.event.KeyDown(sym=tcod.event.KeySym.RIGHT):
-                        actions.Move(dx=1, dy=0)(player)
+                        travel.move_by(player, dx=1, dy=0)
 
 
 if __name__ == "__main__":

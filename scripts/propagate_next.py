@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """Propagate current commits to the next part of the tutorial relative to the current branch.
 
 If current branch is 'foo/03' this will switch/merge to 'foo/04'.
@@ -8,7 +9,7 @@ from __future__ import annotations
 import argparse
 from subprocess import PIPE, run
 
-# ruff: noqa: INP001, S607
+# ruff: noqa: S607
 
 parser = argparse.ArgumentParser(description=__doc__)
 
