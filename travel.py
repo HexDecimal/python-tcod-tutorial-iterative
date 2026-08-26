@@ -22,7 +22,9 @@ def can_move_to(entity: Entity, dest: Position) -> bool:
         return False  # Out-of-bounds
     if tiles.TILE_DATA["move_cost"][dest.z.components[Tiles][dest.y, dest.x]] <= 0:
         return False  # Blocked by wall
-    return not world.Q.all_of(tags=[dest, "Blocking"])  # No blocking entities at dest
+    if world.Q.all_of(tags=[dest, "Blocking"]):  # noqa: SIM103
+        return False  # No blocking entities at dest
+    return True  # Valid move
 
 
 def move_by(entity: Entity, dx: int, dy: int) -> bool:
